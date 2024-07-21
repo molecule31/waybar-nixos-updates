@@ -8,7 +8,7 @@ Here's how the module's tooltip looks when updates are available:
 
 A simple Waybar update checking script for NixOS. It is a general script and could work with other bars or just be run in the terminal.
 
-Credit goes to [this project](https://github.com/J-Carder/waybar-apt-updates) for the idea.
+Credit goes to [this project](https://github.com/J-Carder/waybar-apt-updates) for the idea and starting point.
 
 ## How to use
 
