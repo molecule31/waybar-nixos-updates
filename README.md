@@ -1,5 +1,5 @@
 # waybar-nixos-updates
-Here's how the module looks in Waybar with and without updates:
+Here's how the module looks in Waybar with and without updates:  
 ![Screenshot with updates](screenshot-thumbnail-has-updates.png)
 ![Screenshot updates](screenshot-thumbnail-updated.png)
 
