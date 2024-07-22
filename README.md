@@ -1,4 +1,6 @@
 # waybar-nixos-updates
+A simple Waybar update checking script for NixOS. It is a general script and could work with other bars or just be run in the terminal.
+
 Here's how the module looks in Waybar with and without updates:  
 ![Screenshot with updates](screenshot-thumbnail-has-updates.png)
 ![Screenshot updates](screenshot-thumbnail-updated.png)
@@ -6,7 +8,7 @@ Here's how the module looks in Waybar with and without updates:
 Here's how the module's tooltip looks when updates are available:
 ![Screenshot with updates](screenshot-has-updates.png)
 
-A simple Waybar update checking script for NixOS. It is a general script and could work with other bars or just be run in the terminal.
+This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
 
 Credit goes to [this project](https://github.com/J-Carder/waybar-apt-updates) for the idea and starting point.
 
