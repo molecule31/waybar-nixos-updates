@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
-updates="$(cd ~/.dotfiles && nix flake lock --update-input nixpkgs && nix build .#nixosConfigurations.'hyprnix'.config.system.build.toplevel && nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)"
+updates="$(cd ~/.dotfiles && nix flake lock --update-input nixpkgs && nix build .#nixosConfigurations.$HOSTNAME.config.system.build.toplevel && nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)"
 
 alt="has-updates"
 if [ $updates -eq 0 ]; then
