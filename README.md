@@ -1,5 +1,5 @@
 # waybar-nixos-updates
-Simpler version of Waybar update checking script for NixOS which shows how many packages need to be updated and, when hovering shows how many will be downloaded and unpacked.
+Simpler version of the Waybar update checker script for NixOS, which only shows how many packages need to be updated and doesn't build anything, and when you hover over the widget, shows how much data will be downloaded and unpacked.
 
 It is a general script and could work with other bars or just be run in the terminal.
 
