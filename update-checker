@@ -5,14 +5,11 @@ cd ~/.dotfiles || { echo "Failed to change directory"; exit 1; }
 
 build_output=$(nix flake lock --update-input nixpkgs && nix build --dry-run .#nixosConfigurations.$HOSTNAME.config.system.build.toplevel 2>&1)
 
-# Extract information about fetched paths
-fetched_info=$(echo "$build_output" | awk '/will be fetched/ {flag=1; next} flag && /^[[:space:]]*\/nix\/store/ {print}')
-
-# Count the number of fetched paths
-total_updates=$(echo "$fetched_info" | grep -E '^[[:space:]]+/nix/store/' | wc -l)
+# Extract information about fetched paths and count how many them
+fetched_info=$(echo "$build_output" | awk '/will be fetched/ {flag=1; next} flag && /^[[:space:]]*\/nix\/store/ {print}'| wc -l)
 
 # Extract the sizes of fetched paths
-fetched_size=$(echo "$build_output" | grep -oP '\(\K[^)]+(?=\))' | tr '\n' ' ')
+fetched_size=$(echo "$build_output" | grep -oP '\(\K[^)]+(?=\))' | tr '\n' '\n')
 
 # Output the result
-echo "{ \"text\":\"$total_updates\", \"tooltip\":\"$fetched_size\" }"
+echo "{ \"text\":\"$fetched_info\", \"tooltip\":\"$fetched_size\" }"
