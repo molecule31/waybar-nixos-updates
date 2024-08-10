@@ -9,9 +9,9 @@ Forked [this project](https://github.com/guttermonk/waybar-nixos-updates) for st
 
 ## How to use
 
-Download the `update-checker` script, put it in your .dotfiles/ and make it executable (`chmod +x update-checker`).
+Download the `update-checker` script, put it in your .dotfiles/ and make it executable `chmod +x update-checker`
 
-To configure, add the following to your Waybar config (`~/.config/waybar/config`).
+To configure, add the following to your Waybar config `~/.config/waybar/config`
 
 
 ```json
@@ -26,7 +26,7 @@ To configure, add the following to your Waybar config (`~/.config/waybar/config`
 
 ```
 
-To style use the `#custom-nix-updates` ID in your Waybar styles file (`~/.config/waybar/styles.css`).
+To style use the `#custom-nix-updates` ID in your Waybar styles file `~/.config/waybar/styles.css`
 
 
 ```css
