@@ -1,9 +1,11 @@
 # waybar-nixos-updates
-Simpler version of Waybar update checking script for NixOS. It is a general script and could work with other bars or just be run in the terminal.
+Simpler version of Waybar update checking script for NixOS which shows how many packages need to be updated and, when hovering, shows how many will be downloaded and unpacked.
+
+It is a general script and could work with other bars or just be run in the terminal.
 
 This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
 
-Forked [this project](https://github.com/J-Carder/waybar-apt-updates) for starting point.
+Forked [this project](https://github.com/guttermonk/waybar-nixos-updates) for starting point.
 
 ## How to use
 
@@ -31,9 +33,9 @@ To style use the `#custom-nix-updates` ID in your Waybar styles file (`~/.config
 #custom-nix-updates {
     background-color: white;
     margin: 10px 0px;
-	border: 2px outset gray;
+    border: 2px outset gray;
     min-width: 32px;
 }
 ```
 
-For more information see the [Waybar wiki](https://github.com/Alexays/Waybar/wiki/Styling).
+For more information on styling see the [Waybar wiki](https://github.com/Alexays/Waybar/wiki/Styling).
