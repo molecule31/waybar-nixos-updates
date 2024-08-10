@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
 #This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
-updates="$(cd ~/.dotfiles && nix flake lock --update-input nixpkgs && nix build .#nixosConfigurations.$HOSTNAME.config.system.build.toplevel && nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)"
+cd ~/.dotfiles || { echo "Failed to change directory"; exit 1; }
 
-alt="has-updates"
-if [ $updates -eq 0 ]; then
-    alt="updated"
-fi
+build_output=$(nix flake lock --update-input nixpkgs && nix build --dry-run .#nixosConfigurations.$HOSTNAME.config.system.build.toplevel 2>&1)
 
-tooltip="System updated"
-if [ $updates != 0 ]; then
-	tooltip=$(cd ~/.dotfiles && nvd diff /run/current-system ./result | grep -e '\[U' | awk '{ for (i=3; i<NF; i++) printf $i " "; if (NF >= 3) print $NF; }' ORS='\\n' )
-fi
+# Extract information about fetched paths
+fetched_info=$(echo "$build_output" | awk '/will be fetched/ {flag=1; next} flag && /^[[:space:]]*\/nix\/store/ {print}')
 
-echo "{ \"text\":\"$updates\", \"alt\":\"$alt\", \"tooltip\":\"$tooltip\" }"
+# Count the number of fetched paths
+total_updates=$(echo "$fetched_info" | grep -E '^[[:space:]]+/nix/store/' | wc -l)
+
+# Extract the sizes of fetched paths
+fetched_size=$(echo "$build_output" | grep -oP '\(\K[^)]+(?=\))' | tr '\n' ' ')
+
+# Output the result in the desired format
+echo "{ \"text\":\"$total_updates\", \"tooltip\":\"$fetched_size\" }"
