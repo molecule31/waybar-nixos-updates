@@ -3,7 +3,7 @@
 #This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
 cd ~/.dotfiles || { echo "Failed to change directory"; exit 1; }
 
-build_output=$(nix flake lock --update-input nixpkgs && nix build --dry-run .#nixosConfigurations.$HOSTNAME.config.system.build.toplevel 2>&1)
+build_output=$(nix flake update nixpkgs && nix build --dry-run .#nixosConfigurations.$HOSTNAME.config.system.build.toplevel 2>&1)
 
 # Extract information about fetched paths and count how many them
 fetched_info=$(echo "$build_output" | awk '/will be fetched/ {flag=1; next} flag && /^[[:space:]]*\/nix\/store/ {print}'| wc -l)
